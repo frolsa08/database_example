@@ -4,8 +4,12 @@
 #include "database.h"
 
 
-int cmp(const void *a, const void *b) {
-     return *(double*)a - *(double*)b;
+int cmp_up(const void *a, const void *b) {
+    return *(double*)a - *(double*)b;
+ }
+
+ int cmp_down(const void *a, const void *b) {
+    return  *(double*)b - *(double*)a ;
  }
 
 void App_sort_by_salary(List* list, int direction){
@@ -22,8 +26,14 @@ void App_sort_by_salary(List* list, int direction){
         old_salaries[i] = user->salary;
 	}
 
-    // qsor of salary
-    qsort(salaries, total, sizeof(double), cmp);
+ 	// qsor of salary
+	if (direction == 1) {
+    	qsort(salaries, total, sizeof(double), cmp_up);
+		}
+	else{
+		qsort(salaries, total, sizeof(double), cmp_down);
+	}
+
 
     //compare old and new salary
     for (int i = 0; i < total; i++){
@@ -154,9 +164,9 @@ int App_run() {
 
 			case 7: {
 				int direction = 0;
-				//printf("[1] From min to max\n");
-				//printf("[2] From max to min\n");
-				//scanf("%d", &direction);
+				printf("[1] From min to max\n");
+				printf("[2] From max to min\n");
+				scanf("%d", &direction);
 
 				printf("Sorted by salary.\n");
 				App_sort_by_salary(root, direction);
