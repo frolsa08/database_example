@@ -68,6 +68,23 @@ void App_sort_by_salary(List* list, int direction){
 
 }
 
+void App_filter_by_salary(List* list, double min_val, double max_val) {
+	int total_users = List_count(list);
+	printf("+---------------+---------------+---------------+---------------+\n");
+	printf("|      id       |     name      |      age      |     salary    |\n");
+	printf("+---------------+---------------+---------------+---------------+\n");
+	
+	for (int i=0; i<List_count(list); i++){
+		User* user = (User*)List_at(list, i);
+
+		if ((user->salary >= min_val) && (user->salary <=max_val)) {
+			printf("|%15i|%15s|%15i|%15.lf|\n", i, user->name, user->age, user->salary);
+			printf("+---------------+---------------+---------------+---------------+\n");
+		}
+	}
+	printf("\n");
+}
+
 
 void App_deleteAllUsersFromList(List* root) {
 	for (int i=List_count(root)-1; i>=0; i--){
