@@ -199,7 +199,7 @@ int App_run() {
 				printf("Enter max value of salary:\n");
 				scanf("%lf", &max_val);
 
-				//App_filter_by_salary(root, min_val, max_val);
+				App_filter_by_salary(root, min_val, max_val);
 			} break;
             
 			case 9: {
